@@ -1,0 +1,51 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: takeon-dev
+  name: takeon-ui
+  labels:
+    app: takeon-ui
+spec:
+  replicas: 1
+  template:
+    metadata:
+      namespace: take-on
+      labels:
+        app: takeon-ui
+    spec:
+      containers:
+        - name: takeon-ui
+          image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-ui-cicd:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+      imagePullSecrets:
+        - name: aws-ecr
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    kubernetes.io/loadbalancer-name: takeon-ui
+  name: takeon-ui
+  labels:
+    app: takeon-ui
+spec:
+  ports:
+  - port: 5001
+    targetPort: 5000
+    protocol: TCP
+  selector:
+    app: takeon-ui
+  type: LoadBalancer
+  loadBalancerSourceRanges:
+  - 10.0.0.0/24
+  - 10.0.1.0/24
+  - 80.5.92.42/32

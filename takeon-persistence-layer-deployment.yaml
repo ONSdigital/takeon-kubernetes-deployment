@@ -1,0 +1,64 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: persistence-layer
+  namespace: takeon-dev
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: persistence-layer
+      labels:
+        app: persistence-layer
+    spec:
+      containers:
+      - env:
+        - name: DATASOURCE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: datasource_username
+              name: database-credentials
+        - name: DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: datasource_password
+              name: database-credentials
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: DB_NAME
+              name: db-name
+        - name: DB_SERVER
+          valueFrom:
+            configMapKeyRef:
+              key: DB_SERVER
+              name: db-server
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: DB_PORT
+              name: db-port
+        image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/take-on-pl:suf
+        imagePullPolicy: Always
+        name: persistence-layer
+        ports:
+        - containerPort: 8090
+          name: http
+          protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: persistence-layer
+  labels:
+    app: persistence-layer
+spec:
+  ports:
+  - port: 8090
+    targetPort: 8090
+    protocol: TCP
+  selector:
+    app: persistence-layer
+  type: ClusterIP

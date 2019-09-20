@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: takeon-dev
+  name: business-layer
+  labels:
+    app: business-layer
+spec:
+  replicas: 1
+  template:
+    metadata:
+      namespace: takeon-dev
+      labels:
+        app: business-layer
+    spec:
+      containers:
+        - name: business-layer
+          image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-bl:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8088
+              protocol: TCP
+      imagePullSecrets:
+        - name: aws-ecr
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+  name: business-layer
+  labels:
+    app: business-layer
+spec:
+  ports:
+  - port: 8088
+    targetPort: 8088
+    protocol: TCP
+  selector:
+    app: business-layer
+  type: LoadBalancer
