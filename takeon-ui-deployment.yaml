@@ -9,7 +9,7 @@ spec:
   replicas: 1
   template:
     metadata:
-      namespace: take-on
+      namespace: takeon-dev
       labels:
         app: takeon-ui
     spec:
