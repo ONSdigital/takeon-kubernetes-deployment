@@ -38,7 +38,7 @@ spec:
             configMapKeyRef:
               key: DB_PORT
               name: db-port
-        image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/take-on-pl:suf
+        image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/take-on-dev-pl:latest
         imagePullPolicy: Always
         name: persistence-layer
         ports:

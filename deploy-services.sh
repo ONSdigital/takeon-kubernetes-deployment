@@ -10,6 +10,18 @@ if [ $# -eq 0 ] || [ -z "$1" ]
     exit 1
 fi
 
+kubectl create namespace $1
+# Check status of previous command
+error_code=`echo $?`
+echo $error_code
+
+if [ $error_code -ne 0]
+  then
+    echo "Namespace already exists"
+    exit 1
+fi
+
+
 containers=(service-account.yaml takeon-business-layer-deployment.yaml takeon-persistence-layer-deployment.yaml takeon-ui-deployment.yaml takeon-graphql-deployment.yaml)
 
 for container in ${containers[@]};
