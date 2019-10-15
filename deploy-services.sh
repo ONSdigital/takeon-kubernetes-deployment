@@ -10,8 +10,9 @@ if [ $# -eq 0 ] || [ -z "$1" ]
     exit 1
 fi
 
+aws eks --region eu-west-2 update-kubeconfig --name takeon-dev-eks-cluster
 kubectl create namespace $1
-# Check status of previous command
+# Check status of previous create namespace command
 error_code=`echo $?`
 echo $error_code
 
