@@ -11,17 +11,21 @@ if [ $# -eq 0 ] || [ -z "$1" ]
 fi
 
 aws eks --region eu-west-2 update-kubeconfig --name takeon-dev-eks-cluster
-kubectl create namespace $1
+kubectl create namespace $namespace
 # Check status of previous create namespace command
 error_code=`echo $?`
 echo $error_code
 
-if [ $error_code -ne 0]
-  then
-    echo "Namespace already exists"
-    exit 1
+if [ $error_code -ne 0 ];
+then
+  echo "Namespace already exists"
+  exit 1
+else
+  echo "Namespace created"
 fi
 
+# Run create secrets script for Persistence Layer
+./create-secrets.sh $namespace
 
 containers=(service-account.yaml takeon-business-layer-deployment.yaml takeon-persistence-layer-deployment.yaml takeon-ui-deployment.yaml takeon-graphql-deployment.yaml)
 
