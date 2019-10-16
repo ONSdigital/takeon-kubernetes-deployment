@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: graphql
-        image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/take-on-dev-graphql:latest
+        image: graphile/postgraphile
         imagePullPolicy: Always
         args: #####################
         ports:
