@@ -20,7 +20,7 @@ spec:
       - name: graphql
         image: graphile/postgraphile
         imagePullPolicy: Always
-        args: #####################
+        args: ['--connection', 'postgres://takeonadmin:aVerySecurePassword123!@takeondevdb.cyjaepzpx1tk.eu-west-2.rds.amazonaws.com/takeondevdb', '--schema', 'dev01', '-j', '-a', '--watch']
         ports:
         - containerPort: 5000
 ---

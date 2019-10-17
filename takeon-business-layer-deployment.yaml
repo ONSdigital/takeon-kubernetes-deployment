@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: business-layer
-          image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/take-on-dev-bl:latest
+          image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-bl:latest
           imagePullPolicy: Always
           ports:
             - name: http
