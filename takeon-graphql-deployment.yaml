@@ -19,7 +19,8 @@ spec:
       containers:
       - name: graphql
         image: graphile/postgraphile
-        args: #####################
+        imagePullPolicy: Always
+        args: ##################
         ports:
         - containerPort: 5000
 ---
