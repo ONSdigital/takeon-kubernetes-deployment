@@ -10,7 +10,7 @@ if [ $# -eq 0 ] || [ -z "$1" ]
     exit 1
 fi
 
-aws eks --region eu-west-2 update-kubeconfig --name takeon-dev-eks-cluster
+#aws eks --region eu-west-2 update-kubeconfig --name takeon-dev-eks-cluster
 kubectl create namespace $namespace
 # Check status of previous create namespace command
 error_code=`echo $?`
@@ -25,9 +25,9 @@ else
 fi
 
 # Run create secrets script for Persistence Layer
-./create-secrets.sh $namespace
+#./create-secrets.sh $namespace
 
-containers=(service-account.yaml takeon-business-layer-deployment.yaml takeon-persistence-layer-deployment.yaml takeon-ui-deployment.yaml takeon-graphql-deployment.yaml)
+containers=(service-account.yaml takeon-business-layer-deployment.yaml takeon-ui-deployment.yaml takeon-graphql-deployment.yaml)
 
 for container in ${containers[@]};
 do
