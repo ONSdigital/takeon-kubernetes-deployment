@@ -2,8 +2,8 @@
 
 apply() {
   # $1 = yml file
-  log "Applying $1"
-  source /tmp/minikube_env
+  echo "Applying $1"
+  source env_variables
   cat $1 | envsubst | kubectl apply -f -
   sleep 1
 }
