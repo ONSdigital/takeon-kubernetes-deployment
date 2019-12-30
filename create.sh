@@ -2,6 +2,7 @@
 
 # Set environment variables
 source env_variables
+. kube_functions
 
 # Build Docker Images
 $(aws ecr get-login --no-include-email --region eu-west-2)

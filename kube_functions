@@ -1,0 +1,9 @@
+#! /bin/bash
+
+apply() {
+  # $1 = yml file
+  log "Applying $1"
+  source /tmp/minikube_env
+  cat $1 | envsubst | kubectl apply -f -
+  sleep 1
+}

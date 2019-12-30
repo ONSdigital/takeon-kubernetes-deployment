@@ -3,6 +3,9 @@
 
 namespace=$1
 
+source env_variables
+. kube_functions
+
 # Check for no parameters or blank paremeter
 if [ $# -eq 0 ] || [ -z "$1" ]
   then
@@ -31,6 +34,6 @@ containers=(service-account.yaml takeon-business-layer-deployment.yaml takeon-ui
 
 for container in ${containers[@]};
 do
-    kubectl apply -f $container -n $namespace
+    apply $container
     echo "Deployed $container to $namespace"
 done
