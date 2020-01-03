@@ -7,12 +7,13 @@ source env_variables
 # Delete existing services for namespace
 ./delete-layers.sh ${namespace} 
 
+# Deploy local graphql container
+docker pull graphile/postgraphile
 $(aws ecr get-login --no-include-email --region eu-west-2)
 docker tag graphile/postgraphile:latest 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-graphql:latest
 docker push 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-graphql:latest
 
 # Build Docker Images
-$(aws ecr get-login --no-include-email --region eu-west-2)
 echo "Building ${UI_image} from ${UI_repo}"
 docker build -t ${UI_image}:${namespace} ${UI_repo}
 docker tag takeon-dev-ui:${namespace} 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-ui:${namespace}
