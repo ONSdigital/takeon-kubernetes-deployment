@@ -1,4 +1,4 @@
-export basedir=~/{Change-to-where-your-git-repos-sit}
+export basedir=/Users/sufyan/Desktop/GitRepo
 export logdir=${basedir}/takeon-kubernetes-deployment/logs
 
 export namespace=takeon-dev-test

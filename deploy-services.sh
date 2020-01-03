@@ -30,7 +30,7 @@ fi
 # Run create secrets script for Persistence Layer
 #./create-secrets.sh $namespace
 
-containers=(service-account.yaml takeon-business-layer-deployment.yaml takeon-ui-deployment.yaml takeon-graphql-deployment.yaml)
+containers=(service-account.yaml takeon-graphql-deployment.yaml takeon-business-layer-deployment.yaml takeon-ui-deployment.yaml)
 
 for container in ${containers[@]};
 do
