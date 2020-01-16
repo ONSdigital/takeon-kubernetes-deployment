@@ -14,17 +14,24 @@ spec:
         app: takeon-ui
     spec:
       containers:
-        - name: takeon-ui
-          image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-ui:${namespace}
-          imagePullPolicy: Always
-          ports:
-            - name: http
-              containerPort: 5000
-              protocol: TCP
-      imagePullSecrets:
-        - name: aws-ecr
-
-
+      - name: takeon-ui
+        image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-ui:${namespace}
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 5000
+          protocol: TCP
+        env:
+          - name: API_URL
+	          valueFrom:
+	            secretKeyRef:
+		            name: validation-trigger-api
+                key: validation-trigger-API-URL
+	        - name: API_KEY
+	          valueFrom:
+	             secretKeyRef:
+		             name: validation-trigger-api
+		             key: API-key
 ---
 
 apiVersion: v1
@@ -33,6 +40,7 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
   name: takeon-ui
+  namespace: ${namespace}
   labels:
     app: takeon-ui
 spec:

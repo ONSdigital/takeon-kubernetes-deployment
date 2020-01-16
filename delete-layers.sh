@@ -10,3 +10,5 @@ fi
 kubectl delete deployment,service business-layer -n $namespace
 kubectl delete deployment,service takeon-ui -n $namespace
 kubectl delete deployment,service graphql -n $namespace
+
+kubectl delete namespace $namespace
