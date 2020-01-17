@@ -23,15 +23,15 @@ spec:
           protocol: TCP
         env:
           - name: API_URL
-	          valueFrom:
-	            secretKeyRef:
-		            name: validation-trigger-api
-                key: validation-trigger-API-URL
-	        - name: API_KEY
-	          valueFrom:
-	             secretKeyRef:
-		             name: validation-trigger-api
-		             key: API-key
+            valueFrom:
+              secretKeyRef:
+                name: validation-trigger-api
+                key: API_URL
+          - name: API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: validation-trigger-api
+                key: API_KEY
 ---
 
 apiVersion: v1
