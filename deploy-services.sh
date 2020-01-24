@@ -27,6 +27,12 @@ else
   echo "Namespace created"
 fi
 
+# Create connection string secret 
+kubectl apply -f secret-connection-string.yaml
+kubectl get secret gql-connection-string  -o yaml -n takeon-dev-test > gql-secret.yaml
+gql_connection_string=$(python3 parse-secret.py) 
+echo $gql_connection_string
+
 # Run create secrets script for Persistence Layer
 #./create-secrets.sh $namespace
 
