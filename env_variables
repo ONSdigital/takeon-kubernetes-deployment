@@ -1,4 +1,4 @@
-export basedir=/
+export basedir= xxxxx
 export logdir=${basedir}/takeon-kubernetes-deployment/logs
 
 export namespace=takeon-dev-test

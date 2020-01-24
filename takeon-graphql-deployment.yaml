@@ -20,7 +20,7 @@ spec:
       - name: graphql
         image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-graphql:latest
         imagePullPolicy: Always
-        args: ['--connection', 'postgres://takeonadmin:aVerySecurePassword123!@takeondevdb.cyjaepzpx1tk.eu-west-2.rds.amazonaws.com/takeondevdb', '--schema', 'dev01', '-j', '-a', '--watch']
+        args: xxxxxxxxxxxxxxxx 
         ports:
         - containerPort: 5000
 ---
