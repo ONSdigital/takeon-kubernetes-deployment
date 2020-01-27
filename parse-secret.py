@@ -5,7 +5,7 @@ import base64
 def extract_connection_string():
 
     with open('gql-secret.yaml', 'r') as f:
-        doc = yaml.load(f)
+        doc = yaml.safe_load(f)
 
     connection_string = ''
     text = doc["metadata"]["annotations"]["kubectl.kubernetes.io/last-applied-configuration"]
