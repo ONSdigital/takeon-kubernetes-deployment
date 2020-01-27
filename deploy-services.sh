@@ -30,11 +30,11 @@ fi
 # Create connection string secret 
 kubectl apply -f secret-connection-string.yaml
 kubectl get secret gql-connection-string  -o yaml -n takeon-dev-test > gql-secret.yaml
-gql_connection_string=$(python3 parse-secret.py) 
-echo $gql_connection_string
-
-# Run create secrets script for Persistence Layer
-#./create-secrets.sh $namespace
+chmod +x parse-secret.py
+gql_connection_string=$(python3 parse-secret.py 2>&1 > /dev/null)
+echo ${gql_connection_string}
+echo "export connection_string=\"${gql_connection_string}\"" > db_env_variables 
+source db_env_variables 
 
 containers=(service-account.yaml secret.yaml takeon-graphql-deployment.yaml takeon-business-layer-deployment.yaml takeon-ui-deployment.yaml)
 
