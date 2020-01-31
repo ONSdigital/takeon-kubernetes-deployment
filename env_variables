@@ -1,4 +1,4 @@
-export basedir=/Users/sufyan/Desktop/GitRepo
+export basedir=
 export logdir=${basedir}/takeon-kubernetes-deployment/logs
 
 export namespace=takeon-dev-test
