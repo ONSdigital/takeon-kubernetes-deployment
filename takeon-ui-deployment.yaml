@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  namespace: takeon-dev
+  namespace: ${namespace}
   name: takeon-ui
   labels:
     app: takeon-ui
@@ -9,37 +9,48 @@ spec:
   replicas: 1
   template:
     metadata:
-      namespace: takeon-dev
+      namespace: ${namespace}
       labels:
         app: takeon-ui
     spec:
       containers:
-        - name: takeon-ui
-          image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-ui:latest
-          imagePullPolicy: Always
-          ports:
-            - name: http
-              containerPort: 5000
-              protocol: TCP
-      imagePullSecrets:
-        - name: aws-ecr
-
-
+      - name: takeon-ui
+        image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-ui:${namespace}
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 5000
+          protocol: TCP
+        env:
+          - name: API_URL
+            valueFrom:
+              secretKeyRef:
+                name: validation-trigger-api
+                key: API_URL
+          - name: API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: validation-trigger-api
+                key: API_KEY
 ---
-
 
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
-    kubernetes.io/loadbalancer-name: takeon-ui
   name: takeon-ui
+  namespace: ${namespace}
   labels:
     app: takeon-ui
 spec:
   ports:
   - port: 5001
+    name: flask
+    targetPort: 5000
+    protocol: TCP
+  - port: 8080
+    name: http
     targetPort: 5000
     protocol: TCP
   selector:
@@ -49,3 +60,5 @@ spec:
   - 10.0.0.0/24
   - 10.0.1.0/24
   - 80.5.92.42/32
+  - 89.248.28.81/32
+  - 194.34.204.37/32

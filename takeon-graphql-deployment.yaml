@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: takeon-dev
+  namespace: ${namespace}
   name: graphql
   labels:
     app: graphql
@@ -12,14 +12,15 @@ spec:
       app: graphql
   template:
     metadata:
-      namespace: takeon-dev
+      namespace: ${namespace}
       labels:
         app: graphql
     spec:
       containers:
       - name: graphql
-        image: graphile/postgraphile
-        args: #####################
+        image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-graphql:latest
+        imagePullPolicy: Always
+        args: ${connection_string}
         ports:
         - containerPort: 5000
 ---
@@ -29,6 +30,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: graphql
+  namespace: ${namespace}
   labels:
     app: graphql
 spec:
