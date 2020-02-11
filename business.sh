@@ -10,4 +10,4 @@ docker tag takeon-dev-bl:${namespace} 014669633018.dkr.ecr.eu-west-2.amazonaws.c
 docker push 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-bl:${namespace}
 
 # Delete previous pod
-kubectl delete pods -l app=takeon-business -n ${namespace} 
+kubectl delete pods -l app=business-layer -n ${namespace} 
