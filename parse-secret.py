@@ -11,7 +11,7 @@ def extract_connection_string():
     connection_string = ''
     text = doc["metadata"]["annotations"]["kubectl.kubernetes.io/last-applied-configuration"]
     json_output = json.loads(text)
-    json_conn_string = json_output["data"]["connection_string"]
+    json_conn_string = json_output["data"]["connection-string"]
     connection_string = base64.b64decode(json_conn_string).decode("utf-8")
 
     return connection_string
