@@ -1,7 +1,7 @@
-export basedir=
+export basedir=~/Documents/Takeon
 export logdir=${basedir}/takeon-kubernetes-deployment/logs
 
-export namespace=takeon-dev-test
+export namespace=takeon-dev-retain-validate
 
 export QL_service=graphql
 export QL_image=graphql

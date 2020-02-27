@@ -1,0 +1,1 @@
+export connection_string="['--connection', 'postgres://takeonadmin:aVerySecurePassword123!@takeondevdb.cyjaepzpx1tk.eu-west-2.rds.amazonaws.com/takeondevdb', '--schema', 'dev01', '-j', '-a', '--watch']"
