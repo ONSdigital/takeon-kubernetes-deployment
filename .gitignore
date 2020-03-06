@@ -107,3 +107,8 @@ venv.bak/
 .idea/
 
 .vscode/
+
+gql-secret.yaml
+secret.yaml
+secret-connection-string.yaml
+db_env_variables
