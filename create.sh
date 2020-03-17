@@ -10,8 +10,8 @@ source env_variables
 # Deploy local graphql container
 docker pull graphile/postgraphile
 $(aws ecr get-login --no-include-email --region eu-west-2)
-docker tag graphile/postgraphile:latest 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-graphql:latest
-docker push 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-graphql:latest
+docker tag graphile/postgraphile:latest 226575302242.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-sandbox-graphql:latest
+docker push 226575302242.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-sandbox-graphql:latest
 
 ./ui.sh
 

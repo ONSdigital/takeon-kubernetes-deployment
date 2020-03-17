@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: takeon-ui
-        image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-ui:${namespace}
+        image: 226575302242.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-sandbox-ui:takeon-dev-sandbox-test
         imagePullPolicy: Always
         ports:
         - name: http
