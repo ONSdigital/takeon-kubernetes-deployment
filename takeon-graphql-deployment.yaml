@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: ${file(config.json):namespace}
+  namespace: ${namespace}
   name: graphql
   labels:
     app: graphql
@@ -12,7 +12,7 @@ spec:
       app: graphql
   template:
     metadata:
-      namespace: ${file(config.json):namespace}
+      namespace: ${namespace}
       labels:
         app: graphql
     spec:
@@ -30,7 +30,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: graphql
-  namespace: ${file(config.json):namespace}
+  namespace: ${namespace}
   labels:
     app: graphql
 spec:
