@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: ${namespace}
+  namespace: ${file(config.json):namespace}
   name: graphql
   labels:
     app: graphql
@@ -12,13 +12,13 @@ spec:
       app: graphql
   template:
     metadata:
-      namespace: ${namespace}
+      namespace: ${file(config.json):namespace}
       labels:
         app: graphql
     spec:
       containers:
       - name: graphql
-        image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-graphql:latest
+        image: 226575302242.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-sandbox-graphql:latest
         imagePullPolicy: Always
         args: ${connection_string}
         ports:
@@ -30,7 +30,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: graphql
-  namespace: ${namespace}
+  namespace: ${file(config.json):namespace}
   labels:
     app: graphql
 spec:

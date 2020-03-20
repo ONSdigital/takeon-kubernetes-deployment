@@ -1,16 +1,16 @@
 export basedir=~/Documents/Takeon
 export logdir=${basedir}/takeon-kubernetes-deployment/logs
 
-export namespace=takeon-dev-retain-validate
+export namespace=(enter namespace here)
 
 export QL_service=graphql
 export QL_image=graphql
 
 export BL_repo=${basedir}/takeon-business-layer
-export BL_image=takeon-dev-bl
+export BL_image=takeon-dev-sandbox-bl
 export BL_service=business-layer
 
 
 export UI_repo=${basedir}/takeon-ui
-export UI_image=takeon-dev-ui
+export UI_image=takeon-dev-sandbox-ui
 export UI_service=ui-layer
