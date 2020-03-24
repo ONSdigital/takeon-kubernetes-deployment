@@ -1,7 +1,8 @@
-export basedir=~/
+export basedir=~/Documents/Takeon
 export logdir=${basedir}/takeon-kubernetes-deployment/logs
 
 export namespace=larissa-test
+export accountid=226575302242
 
 export QL_service=graphql
 export QL_image=takeon-dev-sandbox-graphql

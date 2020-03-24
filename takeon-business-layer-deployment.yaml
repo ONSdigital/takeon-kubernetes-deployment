@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: business-layer
-          image: 226575302242.dkr.ecr.eu-west-2.amazonaws.com/${BL_image}:${namespace}
+          image: ${accountid}.dkr.ecr.eu-west-2.amazonaws.com/${BL_image}:${namespace}
           imagePullPolicy: Always
           ports:
             - name: http
