@@ -1,7 +1,7 @@
-export basedir=~/Git-repos
+export basedir=~/
 export logdir=${basedir}/takeon-kubernetes-deployment/logs
 
-export namespace=ryan-test
+export namespace=larissa-test
 
 export QL_service=graphql
 export QL_image=takeon-dev-sandbox-graphql
