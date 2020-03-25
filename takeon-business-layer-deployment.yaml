@@ -1,21 +1,24 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: takeon-dev
+  namespace: ${namespace}
   name: business-layer
   labels:
     app: business-layer
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: business-layer
   template:
     metadata:
-      namespace: takeon-dev
+      namespace: ${namespace}
       labels:
         app: business-layer
     spec:
       containers:
         - name: business-layer
-          image: 014669633018.dkr.ecr.eu-west-2.amazonaws.com/takeon-dev-bl:latest
+          image: ${accountid}.dkr.ecr.eu-west-2.amazonaws.com/${BL_image}:${namespace}
           imagePullPolicy: Always
           ports:
             - name: http
@@ -35,6 +38,7 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
     service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
   name: business-layer
+  namespace: ${namespace}
   labels:
     app: business-layer
 spec:
